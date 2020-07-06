@@ -14,6 +14,10 @@ func main() {
 	})
 
 	app.Post("/", func(ctx *fiber.Ctx) {
+		if "ok" != "ok2" {
+			ctx.Status(http.StatusNotFound).Send("Não encontrado")
+			return
+		}
 		ctx.Status(http.StatusCreated).Send("Post")
 	})
 
