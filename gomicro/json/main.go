@@ -4,17 +4,20 @@ import (
 	"github.com/gofiber/fiber"
 )
 
+type Person struct {
+	Name string
+	Age  uint8
+}
+
 func main() {
 	app := fiber.New()
 
-	app.Get("/get-name/:name", func(ctx *fiber.Ctx) {
-		name := ctx.Params("name")
-
-		result := map[string]string{
-			"name": name,
+	app.Get("/get-name/", func(ctx *fiber.Ctx) {
+		person := Person{
+			Name: "Yassui Kimura",
+			Age:  29,
 		}
-
-		ctx.JSON(result)
+		ctx.JSON(person)
 	})
 
 	app.Listen(8080)
